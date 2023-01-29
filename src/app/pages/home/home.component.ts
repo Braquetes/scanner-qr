@@ -23,11 +23,11 @@ export class HomeComponent {
     // isAuto: false,
     // isBeep: true,
     // decode: 'macintosh',
-    deviceActive: 1,
+    // deviceActive: 1,
     constraints: { 
       audio: false,
       video: {
-        width: window.innerWidth
+        // width: window.innerWidth
       }
     } 
   };
@@ -37,8 +37,15 @@ export class HomeComponent {
 
   constructor(private qrcode: NgxScannerQrcodeService) { }
 
-  public onEvent(e: ScannerQRCodeResult[]): void {
-    console.log(e);
+  public onEvent(res: any, action: any, fn: string): void {
+    const xdxd = res[0]?.value;
+    console.log(xdxd);
+    if(xdxd != undefined){
+      console.log('Escaneado');
+      // this.qrCodeResult2 = res;
+      this.xd = xdxd;
+      action[fn]().subscribe(console.log, alert);
+    }
   }
 
   public handle(action: any, fn: string): void {

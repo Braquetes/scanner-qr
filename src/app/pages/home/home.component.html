@@ -18,7 +18,7 @@
   <br>
   
     <!-- ngx-scanner-qrcode -->
-    <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event)" ></ngx-scanner-qrcode>
+    <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event,action,'stop')" ></ngx-scanner-qrcode>
 
     <!-- data  -->
     <!-- <p class="data">{{ (action.data | async | json) }}</p> -->
