@@ -1,0 +1,19 @@
+.btns{
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+}
+
+.pad{
+    // background-color: wheat;
+    width: min(100%);
+    height: min(100% - 1em);
+    margin-inline: auto;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.text{
+    font-size: 15px;
+}

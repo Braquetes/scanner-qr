@@ -77,6 +77,9 @@ export class HomeComponent {
     });
   }
 
-  
+  reload(){
+    console.log('reload');
+    this.xd = '';
+  }
 
 }
