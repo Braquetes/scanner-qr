@@ -23,7 +23,7 @@ export class HomeComponent {
     // isAuto: false,
     // isBeep: true,
     // decode: 'macintosh',
-    // deviceActive: 1,
+    deviceActive: 1,
     constraints: { 
       audio: false,
       video: {
