@@ -1,5 +1,16 @@
 <div class="pad">
-    <div class="text">{{xd}}</div>
+
+    <div *ngIf="curp">
+        <div class="text">Curp: {{curp}}</div>
+        <div class="text">Nombre: {{data[0]}}</div>
+        <div class="text">Apellido Paterno: {{data[1]}}</div>
+        <div class="text">Apellido Materno: {{data[2]}}</div>
+        <div class="text">Sexo: {{data[3]}}</div>
+        <div class="text">Nacimiento: {{data[4]}}</div>
+        <div class="text">Estado: {{data[5]}}</div>
+        <div class="text">Distrito: {{data[6]}}</div>
+        <div class="text">Edad: {{showAge}}</div>
+    </div>
 
 
     <div><button class="btns" (click)="reload()">Reload</button></div>
@@ -35,32 +46,23 @@
                     src="https://img.icons8.com/ios/50/000000/no-camera--v1.png" width="30px" />
             </button>
 
-            <!-- play/pause -->
-            <button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart"
-                [disabled]="!action.isStart">
-                <img *ngIf="action.isPause" (click)="handle(action, 'play')"
-                    src="https://img.icons8.com/ios/512/play-button-circled--v1.png" width="30px" />
-                <img *ngIf="!action.isPause" (click)="handle(action, 'pause')"
-                    src="https://img.icons8.com/ios/512/circled-pause.png" width="30px" />
-            </button>
 
-            <!-- isTorch -->
-            <button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart"
-                [disabled]="!action.isStart">
-                <img *ngIf="!action.isTorch" (click)="action.isTorch = !action.isTorch; handle(action, 'torcher')"
-                    src="https://raw.githubusercontent.com/id1945/ngx-scanner-qrcode/master/flashlight-off.png"
-                    width="30px" />
-                <img *ngIf="action.isTorch" (click)="action.isTorch = !action.isTorch; handle(action, 'torcher');"
-                    src="https://raw.githubusercontent.com/id1945/ngx-scanner-qrcode/master/flashlight-on.png"
-                    width="30px" />
-            </button>
-
-            <!-- download -->
-            <button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart"
-                [disabled]="!action.isStart">
-                <img (click)="onDowload(action)" src="https://img.icons8.com/ios/512/picture.png" width="30px" />
-            </button>
         </div>
 
+    </div>
+    <hr>
+    <div>Tokens</div>
+    <div class="pad">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div>
+                <label>Numero de tokens a generar: </label>
+                <input name="cantidad" ngModel required #first="ngModel">
+            </div>
+            <div>
+                <label>Letra con la que empieza: </label>
+                <input name="inicial" ngModel required #first="ngModel" maxlength="1">
+            </div>
+            <button>Submit</button>
+          </form>
     </div>
 </div>
