@@ -47,7 +47,7 @@ export class HomeComponent {
 
   constructor(private qrcode: NgxScannerQrcodeService) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   onSubmit(f: NgForm) {
     // console.log(f.value.cantidad);
@@ -57,23 +57,23 @@ export class HomeComponent {
     let r = 0;
 
     for (let i = 0; i < this.numTokens; i++) {
-      
+
       var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
       var charLength = chars.length;
       this.preToken = this.ini.toString();
-      for (let i = 0; i <  7; i++) {
+      for (let i = 0; i < 7; i++) {
         this.preToken += chars.charAt(Math.floor(Math.random() * charLength));
       }
 
       const words = this.tokens;
       const result = words.filter(word => word == this.preToken);
-      if(result[0] != null){
+      if (result[0] != null) {
         console.log('igual');
         r++;
       }
       // console.log("k :" + k + " " + this.preToken);
       // k++
-      
+
       this.tokens.push(this.preToken);
     }
     console.log(this.tokens);
@@ -81,17 +81,44 @@ export class HomeComponent {
     // console.log(f.valid);  // false
   }
 
-  genRandonString(length: any) {
-
-  }
-
   public onEvent(res: any, action: any, fn: string): void {
     const xdxd = res[0]?.value;
     console.log(xdxd);
     if (xdxd != undefined) {
       console.log('Escaneado');
-      // this.qrCodeResult2 = res;
-      this.xd = xdxd;
+
+      if (res[0]?.value != undefined) {
+        console.log('Escaneado');
+        this.qrCodeResult2 = res;
+        this.xd = res[0]?.value;
+        this.data = this.xd.split('||');
+        this.curp = this.data[0];
+        // console.log(this.data[1]);
+        this.data = this.data[1];
+        // console.log(this.curp);
+        this.data = this.data.split('|');
+        // console.log(this.data);
+
+        const cad = this.data[4];
+
+        var separarCadena = cad.split("/");
+        // ["h", "o", "l", "a"]
+
+        var invertirArreglo = separarCadena.reverse();
+        // ["a", "l", "o", "h"]
+
+        var unirArreglo = invertirArreglo.join("/");
+        // "aloh"
+
+        console.log(unirArreglo);
+
+        this.age = unirArreglo;
+
+        this.ageCalculator();
+      } else {
+        console.log('No se pudo escannear');
+      }
+
       action[fn]().subscribe(console.log, alert);
     }
   }
